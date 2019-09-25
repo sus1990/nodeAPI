@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 const adminDB = require('../../models/adminModel');
 const Helper = require('../../common/Helper');
 const validator = require('../../validator/index');
+const config = require('../../config/config')
 
 var nowTime = Helper.getNow();
 
@@ -125,16 +127,21 @@ router.post('/login', (req, res) => {
 			}
 
 			// 3. 获取token 过期时间1h
-			const token = jwt.sign({
-				data: admin.password
-			}, 'secret', {
+			var rules = {
+				'id': admin.id,
+				'name': admin.name,
+				'password': admin.password,
+			}
+			var secretOrKey = config.secretOrKey;
+			// 失效时间
+			const token = jwt.sign(rules, secretOrKey, {
 				expiresIn: '1h'
 			});
 			res.json({
 				msg: 'ok',
 				info: 'got_it',
 				data: {
-					token
+					'token': 'Bearer ' + token
 				},
 				nowTime,
 			})
@@ -151,5 +158,21 @@ router.post('/login', (req, res) => {
 
 
 })
+
+// @route  POST api/admin/info
+// @desc   验证token返回信息
+// @access private
+router.get('/info',
+	passport.authenticate('jwt', {
+		session: false
+	}), (req, res) => {
+		// passport.authenticate 使用passport验证，验证通过以后才会进行下面的代码
+		// 注意这里必须是req.user
+		res.json({
+			'id': req.user.id,
+			'name': req.user.name,
+			'creat_at': req.user.creat_at,
+		});
+	})
 
 module.exports = router;

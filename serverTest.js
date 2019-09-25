@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const passport = require('passport');
+const passport = require('passport'); // 验证token
 const app = express();
 
 
@@ -32,8 +32,14 @@ app.use(bodyParser.json());
 const admin = require('./routes/api/admin');
 app.use('/api/admin',admin);
 
-// 4. 启动服务
-const port = process.env.PORT || 3000;
+// 4. passport 初始化
+app.use(passport.initialize());
+require('./common/passport')(passport); // 要放在mongoose后面，因为他使用了admin表
+
+// 5. 启动服务
+// const port = process.env.PORT || 3000;
+const port = 3000;
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
