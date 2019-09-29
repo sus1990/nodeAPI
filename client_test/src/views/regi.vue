@@ -10,20 +10,26 @@
 					<el-form-item label="用户名" prop="name">
 						<el-input v-model="regiAdmin.name" placeholder="请输入用户名"></el-input>
 					</el-form-item>
-					
-					<el-form-item label="用户名" prop="name">
-						<el-input v-model="regiAdmin.name" placeholder="请输入用户名"></el-input>
+
+					<el-form-item label="密码" prop="password">
+						<el-input v-model="regiAdmin.password" placeholder="请输入密码"></el-input>
 					</el-form-item>
-					
-					<el-form-item label="用户名" prop="name">
-						<el-input v-model="regiAdmin.name" placeholder="请输入用户名"></el-input>
+
+					<el-form-item label="确认密码" prop="password2">
+						<el-input v-model="regiAdmin.password2" placeholder="请确认密码"></el-input>
 					</el-form-item>
-					
-					
-					
+
+					<el-form-item label="选择角色" prop="role">
+						<el-select v-model="regiAdmin.role" placeholder="选择角色">
+							<el-option lable="总部管理员" value="总部管理员"></el-option>
+							<el-option lable="总部员工" value="总部员工"></el-option>
+							<el-option lable="区域管理员" value="区域管理员"></el-option>
+							<el-option lable="区域员工" value="区域员工"></el-option>
+						</el-select>
+					</el-form-item>
 
 					<el-form-item>
-						<el-button type="primary" class="submit_btn">注册</el-button>
+						<el-button type="primary" class="submit_btn" @click="submitForm('regiForm')">注册</el-button>
 					</el-form-item>
 
 				</el-form>
@@ -40,9 +46,25 @@
 
 			return {
 				regiAdmin: {
-					name: ""
+					name: '',
+					password: '',
+					password2: '',
+					role: ''
 				},
-				rules: []
+				rules: {
+					name: [{
+							required: true,
+							message: '不能为空',
+							trigger: 'blur'
+						},
+						{
+							min: 2,
+							max: 16,
+							message: '长度在2~16',
+							trigger: 'blur'
+						}
+					]
+				}
 			}
 		},
 		components: {}
