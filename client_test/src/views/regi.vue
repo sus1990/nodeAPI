@@ -43,7 +43,14 @@
 	export default {
 		name: 'regi',
 		data() {
-
+			// 定义二次确认密码的方法
+			var validatePass = (rule, value, callback) => {
+				if (value !== this.regiAdmin.password) {
+					callback(new Error('两次输入密码不一致!'));
+				} else {
+					callback();
+				}
+			};
 			return {
 				regiAdmin: {
 					name: '',
@@ -62,6 +69,33 @@
 							max: 16,
 							message: '长度在2~16',
 							trigger: 'blur'
+						}
+					],
+					password: [{
+							required: true,
+							message: '不能为空',
+							trigger: 'blur'
+						},
+						{
+							min: 6,
+							max: 10,
+							message: '长度在6~10',
+							trigger: 'blur'
+						}
+					],
+					password2: [{
+							required: true,
+							message: '不能为空',
+							trigger: 'blur'
+						},
+						{
+							min: 6,
+							max: 10,
+							message: '长度在6~10',
+							trigger: 'blur'
+						},
+						{
+							
 						}
 					]
 				}
