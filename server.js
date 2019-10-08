@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
 
-// 引入users.js
-const users = require('./routes/api/users');
+// 引入user.js
+const user = require('./routes/api/user');
 const profiles = require('./routes/api/profiles');
 
 // DB config
@@ -34,7 +34,7 @@ require('./config/passport')(passport);
 // })
 
 // 使用routes
-app.use('/api/users', users);
+app.use('/api/user', user);
 app.use('/api/profile', profiles);
 
 const port = process.env.PORT || 5001;

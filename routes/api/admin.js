@@ -39,7 +39,7 @@ router.post('/regi', (req, res) => {
 		trueList
 	} = validator(plan_list, req.body)
 	if (!isValid) {
-		return res.json({
+		return res.json({ 
 			msg: 'no',
 			info: 'param_wrong',
 			data: errors,
