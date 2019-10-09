@@ -31,6 +31,10 @@
 					<el-form-item>
 						<el-button type="primary" class="submit_btn" @click="submitForm('regiForm')">注册</el-button>
 					</el-form-item>
+					
+					<el-form-item>
+						<el-button type="primary" class="submit_btn" @click="test()">测试</el-button>
+					</el-form-item>
 
 				</el-form>
 
@@ -113,7 +117,13 @@
 						return false;
 					}
 				});
+			},
+			test(){
+				this.$axios.get('/api/admin/')
+				.then	
 			}
+			
+			
 		}
 	}
 </script>
