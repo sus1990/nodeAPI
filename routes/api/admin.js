@@ -9,13 +9,11 @@ const Helper = require('../../common/Helper');
 const validator = require('../../validator/index');
 const config = require('../../config/config')
 
-var nowTime = Helper.getNow();
-
-
 // @route  POST api/admin/
 // @desc   测试是否联通
 // @access public
 router.get('/', (req, res) => {
+	let nowTime = Helper.getNow();
 	res.json({
 		'msg': 'ok',
 		'info': 'got_it',
@@ -27,7 +25,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/regi', (req, res) => {
-
+	let nowTime = Helper.getNow();
 	// 0. 参数验证
 	let plan_list = { // 计划要验证的参数和是否必须
 		'name': true,
@@ -39,7 +37,7 @@ router.post('/regi', (req, res) => {
 		trueList
 	} = validator(plan_list, req.body)
 	if (!isValid) {
-		return res.json({ 
+		return res.json({
 			msg: 'no',
 			info: 'param_wrong',
 			data: errors,
@@ -69,7 +67,7 @@ router.post('/regi', (req, res) => {
 		.then(result => {
 			res.json({ // 4. 正常返回数据
 				msg: 'ok',
-				info: 'recently_saved ',
+				info: 'recently_saved',
 				data: result,
 				nowTime,
 			})
@@ -88,7 +86,7 @@ router.post('/regi', (req, res) => {
 // @desc   返回token jwt passport
 // @access public
 router.post('/login', (req, res) => {
-
+	let nowTime = Helper.getNow();
 	// 0. 参数验证
 	let plan_list = { // 计划要验证的参数和是否必须
 		'name': true,
