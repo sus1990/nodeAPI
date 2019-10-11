@@ -133,7 +133,7 @@ router.post('/login', (req, res) => {
 			var secretOrKey = config.secretOrKey;
 			// 失效时间
 			const token = jwt.sign(rules, secretOrKey, {
-				expiresIn: '1h'
+				expiresIn: 10
 			});
 			res.json({
 				msg: 'ok',

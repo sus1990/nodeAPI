@@ -70,7 +70,7 @@
 		},
 		components: {},
 		methods: {
-			// 提交注册admin数据
+			// 提交登录admin数据
 			submitForm(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
@@ -84,19 +84,27 @@
 									const {
 										token
 									} = result.data;
-									
+
 									// 保存token
-							 		localStorage.setItem('token',token);
-									
+									localStorage.setItem('token', token);
+
 									// 解析token
 									const decoded = jwt_decode(token);
-									console.log(decoded);
+									// console.log(decoded)
 
+									// 存储数据到vuex
+									this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decoded));
+									this.$store.dispatch("setUser", decoded);
+									
+									// console.log(this.$store.getters.user);
+									
 									this.$message({
 										message: '登录成功',
 										type: 'success'
 									})
 									this.$router.push('./index')
+									
+									console.log(this.$store.getters.user);
 								} else {
 									this.$message.error(result.info);
 								}
@@ -126,6 +134,14 @@
 					})
 
 				// this.$router.push('./login')
+			},
+			isEmpty(value) {
+				return (
+					value === undefined ||
+					value === null ||
+					(typeof value === "object" && Object.keys(value).length === 0) ||
+					(typeof value === "string" && value.trim().length === 0)
+				);
 			}
 
 
