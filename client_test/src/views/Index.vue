@@ -1,10 +1,7 @@
 <template>
 	<div class="index">
 		<HeaderNav></HeaderNav>
-		<div class="container">
-			<h1 class="title">米修在线</h1>
-			<p class="lead"> 专注于线上教育, 用心做课程, 用心做服务! </p>
-		</div>
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -18,5 +15,10 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	.index {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
 </style>

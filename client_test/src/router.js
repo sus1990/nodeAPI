@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
 
 import Index from './views/index'
 import Regi from './views/regi'
 import Login from './views/login'
 import notFound from './views/404'
+
+import Home from './views/home'
+import UserInfo from './views/userInfo'
 
 Vue.use(Router)
 
@@ -24,7 +26,20 @@ const router = new Router({
 		{
 			path: '/index',
 			name: 'index',
-			component: Index
+			component: Index,
+			children: [{
+				path: '',
+				component: Home
+			}, {
+				path: '/home',
+				name:'home',
+				component: Home
+			}, 
+			{
+				path: '/userInfo',
+				name:'userInfo',
+				component: UserInfo
+			}]
 		},
 		{
 			path: '/regi',
