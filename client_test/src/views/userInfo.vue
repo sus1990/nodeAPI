@@ -20,7 +20,7 @@
 					<div class="user-item">
 						<i class="fa fa-cog"></i>
 						<span>管理员</span>
-					</div>
+					</div> 
 					
 				</div>
 			</el-col>

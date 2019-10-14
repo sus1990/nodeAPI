@@ -28,18 +28,19 @@ const router = new Router({
 			name: 'index',
 			component: Index,
 			children: [{
-				path: '',
-				component: Home
-			}, {
-				path: '/home',
-				name:'home',
-				component: Home
-			}, 
-			{
-				path: '/userInfo',
-				name:'userInfo',
-				component: UserInfo
-			}]
+					path: '',
+					component: Home
+				}, {
+					path: '/home',
+					name: 'home',
+					component: Home
+				},
+				{
+					path: '/userInfo',
+					name: 'userInfo',
+					component: UserInfo
+				}
+			]
 		},
 		{
 			path: '/regi',
@@ -62,7 +63,7 @@ router.beforeEach((to, from, next) => {
 	// login页面在任何情况下都可以访问
 	// 保存token后，可以访问其他页面
 	// 没有保存token，访问其他页面，会跳转到login
-	if (to.path === '/login') {
+	if (to.path === '/login' || to.path === '/regi') {
 		next()
 	} else {
 		isLogin ? next() : next('/login');

@@ -22,7 +22,9 @@ router.get('/', (req, res) => {
 	})
 })
 
-
+// @route  POST api/admin/regi
+// @desc   注册管理员
+// @access public
 
 router.post('/regi', (req, res) => {
 	let nowTime = Helper.getNow();
@@ -124,7 +126,7 @@ router.post('/login', (req, res) => {
 				throw new Error('expired_data');
 			}
 
-			// 3. 获取token 过期时间1h
+			// 3. 获取token 过期时间
 			var rules = {
 				'id': admin.id,
 				'name': admin.name,

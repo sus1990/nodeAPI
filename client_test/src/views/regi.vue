@@ -140,16 +140,16 @@
 			test() {
 				this.$axios.get('/api/admin/')
 					.then(res => {
-						let result = res.data;
-
-						if (result.msg === 'ok' && result.info === 'recently_saved') {
-							this.$message({
-								message: '创建成功',
-								type: 'success'
-							})
-						} else {
-							this.$message.error(result.info);
-						}
+						// let result = res.data;
+						console.log(res)
+						// if (result.msg === 'ok' && result.info === 'recently_saved') {
+						// 	this.$message({
+						// 		message: '创建成功',
+						// 		type: 'success'
+						// 	})
+						// } else {
+						// 	this.$message.error(result.info);
+						// }
 
 					})
 

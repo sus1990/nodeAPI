@@ -14,7 +14,7 @@
 .home {
   width: 100%;
   height: 100%;
-  background: url(../../../client/src/assets/showcase.png) no-repeat;
+  background: url(../assets/img/showcase.png) no-repeat;
   background-size: 100% 100%;
 }
 .container {
