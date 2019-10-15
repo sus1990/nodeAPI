@@ -60,7 +60,8 @@
 					name: '',
 					password: '',
 					password2: '',
-					role: ''
+					role: '',
+					Scode: ''
 				},
 				rules: {
 					name: [{
@@ -123,7 +124,7 @@
 										message: '创建成功',
 										type: 'success'
 									});
-									
+
 									this.$router.push('./login')
 								} else {
 									this.$message.error(result.info);
@@ -138,10 +139,12 @@
 
 			// 测试
 			test() {
-				this.$axios.get('/api/admin/')
+				console.log(this.$config.Scode)
+				this.regiAdmin.Scode = this.$config.Scode;
+				this.$axios.post('/api/admin/login', this.regiAdmin)
 					.then(res => {
-						// let result = res.data;
 						console.log(res)
+						// let result = res.data;
 						// if (result.msg === 'ok' && result.info === 'recently_saved') {
 						// 	this.$message({
 						// 		message: '创建成功',

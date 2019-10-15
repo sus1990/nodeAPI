@@ -40,11 +40,12 @@ module.exports = {
         open: true,
         host: 'localhost',
         port: 8080,
-        https: true,
+        https: false,
         hotOnly: false,
         proxy: { // 配置跨域
             '/api': {
-                target: 'https://www.sushen1990.cn:3000/api/',
+                // target: 'https://www.sushen1990.cn:3000/api/',
+                target: 'http://127.0.0.1:3000/api/',
                 ws: true,
                 changOrigin: true,
                 pathRewrite: {
