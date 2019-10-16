@@ -127,6 +127,7 @@
 
 									this.$router.push('./login')
 								} else {
+									console.log(result)
 									this.$message.error(result.info);
 								}
 

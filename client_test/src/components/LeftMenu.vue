@@ -49,13 +49,10 @@
 						icon: 'fa-university',
 						name: '学校管理',
 						path: 'school',
-						children: [{
-								path: 'school_add',
-								name: '添加学校'
-							},
+						children: [
 							{
-								path: 'school_list',
-								name: '查看学校'
+								path: 'school',
+								name: '学校管理'
 							}
 						]
 					},

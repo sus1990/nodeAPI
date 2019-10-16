@@ -8,6 +8,7 @@ import notFound from './views/404'
 
 import Home from './views/home'
 import UserInfo from './views/userInfo'
+import School from './views/school'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ const router = new Router({
 					path: '/userInfo',
 					name: 'userInfo',
 					component: UserInfo
+				},
+				{
+					path: '/school',
+					name: 'school',
+					component: School
 				}
 			]
 		},

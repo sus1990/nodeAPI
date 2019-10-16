@@ -38,6 +38,7 @@
 				loginAdmin: {
 					name: '',
 					password: '',
+					Scode: ''
 				},
 				rules: {
 					name: [{
@@ -74,7 +75,7 @@
 			submitForm(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-
+						this.loginAdmin.Scode = this.$config.Scode;
 						this.$axios
 							.post('/api/admin/login', this.loginAdmin)
 							.then(res => {
@@ -95,18 +96,18 @@
 									// 存储数据到vuex
 									this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decoded));
 									this.$store.dispatch("setUser", decoded);
-									
+
 									// console.log(this.$store.getters.user);
-									
+
 									this.$message({
 										message: '登录成功',
 										type: 'success'
 									})
 									this.$router.push('./index')
-									
+
 									console.log(this.$store.getters.user);
 								} else {
-									this.$message.error(result.info);
+									this.$message.error(JSON.stringify(result.data));
 								}
 
 							})
@@ -128,7 +129,7 @@
 								type: 'success'
 							})
 						} else {
-							this.$message.error(result.info);
+							this.$message.error(JSON.stringify(result.data));
 						}
 
 					})
