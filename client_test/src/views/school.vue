@@ -1,21 +1,58 @@
 <template>
 	<el-table :data="tableData" style="width: 100%" max-heigh="450" border>
 
-		<el-table-column label="序号" type="index" width="180" align="center" >
+		<el-table-column label="序号" type="index" width="180" align="center">
 		</el-table-column>
 
-		<el-table-column label="创建时间" width="180" align="center">
+		<el-table-column label="创建时间" width="250" align="center">
 			<template slot-scope="scope">
 				<i class="el-icon-time"></i>
-				<span style="margin-left: 10px">{{ scope.row.date }}</span>
+				<span style="margin-left: 10px">{{ scope.row.create_at | filterData }}</span>
 			</template>
 		</el-table-column>
 
+		<el-table-column label="学校名称" width="180" align="center">
+			<template slot-scope="scope">
+				<span style="margin-left: 10px">{{ scope.row.school_name }}</span>
+			</template>
+		</el-table-column>
+
+		<el-table-column label="学校地址" width="180" align="center">
+			<template slot-scope="scope">
+				<span style="margin-left: 10px">{{ scope.row.address }}</span>
+			</template>
+		</el-table-column>
+
+		<el-table-column label="联系人" width="180" align="center">
+			<template slot-scope="scope">
+				<span style="margin-left: 10px">{{ scope.row.contact_name }}</span>
+			</template>
+		</el-table-column>
+
+		<el-table-column label="联系人电话" width="180" align="center">
+			<template slot-scope="scope">
+				<span style="margin-left: 10px">{{ scope.row.contact_mobile }}</span>
+			</template>
+		</el-table-column>
+
+		<el-table-column label="备注" width="180" align="center">
+			<template slot-scope="scope">
+				<span style="margin-left: 10px">{{ scope.row.info }}</span>
+			</template>
+		</el-table-column>
+
+		<el-table-column label="操作">
+			<template slot-scope="scope">
+				<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+				<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+			</template>
+		</el-table-column>
 
 	</el-table>
 </template>
 
 <script>
+	import helper from '../../common/helper'
 	export default {
 		name: 'school',
 		data() {
@@ -27,11 +64,28 @@
 				}]
 			}
 		},
+		filters: {
+			// 过滤器时间
+			filterData(value) {
+				if (!value) {
+					return ''
+				};
+				let time = helper.getTimeString(value);
+				return time;
+			},
+			// 过滤器
+			filterAddress(value, val1, val2) {
+
+				let address = value + '省' + val1 + '省' + val1 + '省' + value + '省';
+				return time;
+			}
+
+		},
 		created() {
 			this.getSchoolData();
-			console.log(this.tableData)
 		},
 		methods: {
+			// 获取数据
 			getSchoolData() {
 				const postData = {
 					'Scode': this.$config.Scode,
@@ -43,18 +97,19 @@
 
 						let result = res.data;
 						if (result.msg === 'ok' && result.info === 'got_it') {
-
-							// console.log(result.data)
-							// this.tableData = result.data;
-
-							console.log(this.tableData)
+							this.tableData = result.data;
 						} else {
 							this.$message.error(JSON.stringify(result.data));
 						}
 
 					})
 
-
+			},
+			handleEdit(index, row) {
+				console.log(index, row);
+			},
+			handleDelete(index, row) {
+				console.log(index, row);
 			}
 		}
 	}
