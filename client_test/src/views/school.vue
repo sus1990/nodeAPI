@@ -1,54 +1,56 @@
 <template>
-	<el-table :data="tableData" style="width: 100%" max-heigh="450" border>
+	<div class="fillcontain">
+		<el-table :data="tableData" style="width: 100%" max-heigh="450" border>
 
-		<el-table-column label="序号" type="index" width="180" align="center">
-		</el-table-column>
+			<el-table-column label="序号" type="index" width="180" align="center">
+			</el-table-column>
 
-		<el-table-column label="创建时间" width="250" align="center">
-			<template slot-scope="scope">
-				<i class="el-icon-time"></i>
-				<span style="margin-left: 10px">{{ scope.row.create_at | filterData }}</span>
-			</template>
-		</el-table-column>
+			<el-table-column label="创建时间" width="250" align="center">
+				<template slot-scope="scope">
+					<i class="el-icon-time"></i>
+					<span style="margin-left: 10px">{{ scope.row.create_at | filterData }}</span>
+				</template>
+			</el-table-column>
 
-		<el-table-column label="学校名称" width="180" align="center">
-			<template slot-scope="scope">
-				<span style="margin-left: 10px">{{ scope.row.school_name }}</span>
-			</template>
-		</el-table-column>
+			<el-table-column label="学校名称" width="180" align="center">
+				<template slot-scope="scope">
+					<span style="margin-left: 10px">{{ scope.row.school_name }}</span>
+				</template>
+			</el-table-column>
 
-		<el-table-column label="学校地址" width="180" align="center">
-			<template slot-scope="scope">
-				<span style="margin-left: 10px">{{ scope.row.address }}</span>
-			</template>
-		</el-table-column>
+			<el-table-column label="学校地址" width="180" align="center">
+				<template slot-scope="scope">
+					<span style="margin-left: 10px;color:#00d503">{{ scope.row.address }}</span>
+				</template>
+			</el-table-column>
 
-		<el-table-column label="联系人" width="180" align="center">
-			<template slot-scope="scope">
-				<span style="margin-left: 10px">{{ scope.row.contact_name }}</span>
-			</template>
-		</el-table-column>
+			<el-table-column label="联系人" width="180" align="center">
+				<template slot-scope="scope">
+					<span style="margin-left: 10px">{{ scope.row.contact_name }}</span>
+				</template>
+			</el-table-column>
 
-		<el-table-column label="联系人电话" width="180" align="center">
-			<template slot-scope="scope">
-				<span style="margin-left: 10px">{{ scope.row.contact_mobile }}</span>
-			</template>
-		</el-table-column>
+			<el-table-column label="联系人电话" width="180" align="center">
+				<template slot-scope="scope">
+					<span style="margin-left: 10px">{{ scope.row.contact_mobile }}</span>
+				</template>
+			</el-table-column>
 
-		<el-table-column label="备注" width="180" align="center">
-			<template slot-scope="scope">
-				<span style="margin-left: 10px">{{ scope.row.info }}</span>
-			</template>
-		</el-table-column>
+			<el-table-column label="备注" width="180" align="center">
+				<template slot-scope="scope">
+					<span style="margin-left: 10px">{{ scope.row.info }}</span>
+				</template>
+			</el-table-column>
 
-		<el-table-column label="操作">
-			<template slot-scope="scope">
-				<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-				<el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-			</template>
-		</el-table-column>
+			<el-table-column label="操作" align="center" fixed="right">
+				<template slot-scope="scope">
+					<el-button type="warning" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+					<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+				</template>
+			</el-table-column>
 
-	</el-table>
+		</el-table>
+	</div>
 </template>
 
 <script>
