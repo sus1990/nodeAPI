@@ -67,7 +67,7 @@
 			}
 		},
 		filters: {
-			// 过滤器时间
+			// 过滤器时间 mongdb带时区的时间，转换为不带时区的。
 			filterData(value) {
 				if (!value) {
 					return ''
