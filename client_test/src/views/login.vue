@@ -77,7 +77,7 @@
 					if (valid) {
 						this.loginAdmin.Scode = this.$config.Scode;
 						this.$axios
-							.post('/api/admin/login', this.loginAdmin)
+							.post('/api/v1/admin/login', this.loginAdmin)
 							.then(res => {
 								let result = res.data;
 								if (result.msg === 'ok' && result.info === 'got_it') {
