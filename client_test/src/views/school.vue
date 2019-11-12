@@ -94,11 +94,12 @@
 					'size': 10,
 					'page': 1
 				};
-				this.$axios.post('/api/school/school_list_page', postData)
+				this.$axios.post('/api/v1/school/school_list_page', postData)
 					.then(res => {
 
 						let result = res.data;
-						if (result.msg === 'ok' && result.info === 'got_it') {
+						// console.log(result)
+						if (result.msg === 'success' && result.info === 'got_it') {
 							this.tableData = result.data;
 						} else {
 							this.$message.error(JSON.stringify(result.data));
