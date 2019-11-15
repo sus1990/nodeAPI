@@ -52,7 +52,7 @@
 						children: [
 							{
 								path: 'school',
-								name: '学校管理'
+								name: '查看学校'
 							}
 						]
 					},
@@ -65,7 +65,7 @@
 								name: '添加班级'
 							},
 							{
-								path: 'class_list',
+								path: 'class',
 								name: '查看班级'
 							}
 						]

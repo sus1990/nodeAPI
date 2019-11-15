@@ -9,6 +9,7 @@ import notFound from './views/404'
 import Home from './views/home'
 import UserInfo from './views/userInfo'
 import School from './views/school'
+import Class from './views/news'
 
 Vue.use(Router)
 
@@ -25,6 +26,7 @@ const router = new Router({
 			component: notFound
 		},
 		{
+			// 左侧分栏的跳转链接都在这里
 			path: '/index',
 			name: 'index',
 			component: Index,
@@ -45,6 +47,11 @@ const router = new Router({
 					path: '/school',
 					name: 'school',
 					component: School
+				},
+				{
+					path: '/class',
+					name: 'class',
+					component: Class
 				}
 			]
 		},
